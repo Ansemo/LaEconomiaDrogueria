@@ -1,0 +1,18 @@
+<div class="registration-container">
+  @if(showStep(1)){
+  <app-step-one
+    [stepOneForm]="stepOneFormGroup"
+    (nextStep)="nextStep()"
+  ></app-step-one>
+  } @if(showStep(2)){
+  <app-step-two
+    [stepTwoForm]="stepTwoFormGroup"
+    (nextStep)="nextStep()"
+  ></app-step-two>
+  } @if(showStep(3)){
+  <app-step-three
+    [stepThreeForm]="stepThreeFormGroup"
+    (nextStep)="nextStep()"
+  ></app-step-three>
+  }
+</div>

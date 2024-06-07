@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+}
+
+.left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to top left, #2b81f7, #3188ff 50%),
+    linear-gradient(to top right, #287df3, #297ff5 50%),
+    linear-gradient(to bottom left, #3188ff, #297ff4 50%),
+    linear-gradient(to bottom right, #3188ff, #287ef4 50%);
+  @media (max-width: 600px) {
+    display: none;
+  }
+}
+
+.right {
+  flex: 1;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #f2f4f7;
+  @media (max-width: 600px) {
+    // padding: 20px 0;
+  }
+}
+::ng-deep .mat-mdc-snackbar-surface {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}

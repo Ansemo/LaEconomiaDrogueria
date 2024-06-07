@@ -1,0 +1,80 @@
+<div class="step-two-container">
+    <app-detail
+      [subtitle]="'Paso 2/3'"
+      [title]="'Información Adicional'"
+      [detail1]="''"
+      [detail2]="''"
+    ></app-detail>
+  
+    <mat-card class="step-two-card">
+      <mat-card-content class="step-two-card__content">
+        <div class="step-two-card__form-container">
+          <form [formGroup]="stepTwoForm" class="step-two-form">
+            <label for="documentType" class="step-two-form__label">Tipo de documento</label>
+            <select id="documentType" formControlName="documentType" class="step-two-form__input">
+              <option value="cc">Cédula de Ciudadanía</option>
+              <option value="ti">Tarjeta de Identidad</option>
+            </select>
+            @if(stepTwoForm.get('documentType')?.touched && stepTwoForm.get('documentType')?.hasError('required')){
+            <mat-error>El tipo de documento es requerido</mat-error>
+            }
+  
+            <label for="documentNumber" class="step-two-form__label">Número de identificación</label>
+            <input
+              matInput
+              type="text"
+              id="documentNumber"
+              formControlName="documentNumber"
+              class="step-two-form__input"
+            />
+            @if(stepTwoForm.get('documentNumber')?.touched && stepTwoForm.get('documentNumber')?.hasError('required')){
+            <mat-error>El número de identificación es requerido</mat-error>
+            }
+  
+            <label for="gender" class="step-two-form__label">Género</label>
+            <select id="gender" formControlName="gender" class="step-two-form__input">
+              <option value="male">Masculino</option>
+              <option value="female">Femenino</option>
+            </select>
+            @if(stepTwoForm.get('gender')?.touched && stepTwoForm.get('gender')?.hasError('required')){
+            <mat-error>El género es requerido</mat-error>
+            }
+  
+            <label for="birthDate" class="step-two-form__label">Fecha de nacimiento</label>
+            <input
+              matInput
+              type="date"
+              id="birthDate"
+              formControlName="birthDate"
+              class="step-two-form__input"
+            />
+            @if(stepTwoForm.get('birthDate')?.touched && stepTwoForm.get('birthDate')?.hasError('required')){
+            <mat-error>La fecha de nacimiento es requerida</mat-error>
+            }
+          </form>
+          <button
+            mat-raised-button
+            class="step-two-button"
+            (click)="nextStep.emit()"
+            [disabled]="stepTwoForm.invalid"
+          >
+            Siguiente
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <p class="info-text">
+    ETICOS SERRANO GÓMEZ LTDA le informa que los datos suministrados a través de
+    este sitio web serán tratados para efecto de gestionar la información que se
+    requiere por usted de nuestra organización, petición que conlleva el
+    consentimiento de forma inequívoca para el tratamiento de sus datos en el
+    sentido antes dicho. Le rogamos abstenerse de suministrar información de
+    carácter sensible si no es absolutamente necesario para resolver su inquietud.
+    Puede consultar la política de protección de datos de ETICOS en el siguiente
+    enlace web
+    <a href="#">www.droguerialaeconomia.com</a> y ejercer sus derechos a conocer,
+    actualizar, rectificar su información, o bien solicitar la cancelación del
+    proceso en el siguiente correo electrónico habeasdata&commat;eticos.com
+  </p>
+  

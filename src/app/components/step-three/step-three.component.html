@@ -1,0 +1,98 @@
+<div class="step-three-container">
+  <app-detail
+    [subtitle]="'Paso 3/3'"
+    [title]="'Crear contraseña'"
+    [detail1]="''"
+    [detail2]="''"
+  ></app-detail>
+
+  <mat-card class="step-three-card">
+    <mat-card-content class="step-three-card__content">
+      <div class="step-three-card__form-container">
+        <form [formGroup]="stepThreeForm" class="step-three-form">
+          <label for="password" class="step-three-form__label"
+            >Contraseña</label
+          >
+          <div class="step-three-form__input-container">
+            <input
+              matInput
+              type="password"
+              id="password"
+              formControlName="password"
+              class="step-three-form__input"
+              [type]="hidePassword ? 'password' : 'text'"
+            />
+            <button
+              type="button"
+              class="step-three-form__toggle-password"
+              (click)="togglePassword()"
+            >
+              <mat-icon>{{
+                hidePassword ? "visibility" : "visibility_off"
+              }}</mat-icon>
+            </button>
+          </div>
+          @if(stepThreeForm.get('password')?.touched &&
+          stepThreeForm.get('password')?.hasError('required')){
+          <mat-error>La contraseña es requerida</mat-error>
+          } @if(stepThreeForm.get('password')?.touched &&
+          stepThreeForm.get('password')?.hasError('minlength')){
+          <mat-error>La contraseña debe tener al menos 8 caracteres</mat-error>
+          }
+
+          <label for="confirmPassword" class="step-three-form__label"
+            >Repetir contraseña</label
+          >
+          <div class="step-three-form__input-container">
+            <input
+              matInput
+              type="password"
+              id="confirmPassword"
+              formControlName="confirmPassword"
+              class="step-three-form__input"
+              [type]="hideConfirmPassword ? 'password' : 'text'"
+            />
+            <button
+              type="button"
+              class="step-three-form__toggle-password"
+              (click)="toggleConfirmPassword()"
+            >
+              <mat-icon>{{
+                hideConfirmPassword ? "visibility" : "visibility_off"
+              }}</mat-icon>
+            </button>
+          </div>
+          @if(stepThreeForm.get('confirmPassword')?.touched &&
+          stepThreeForm.get('confirmPassword')?.hasError('required')){
+          <mat-error>Repetir la contraseña es requerido</mat-error>
+          } @if(stepThreeForm.hasError('passwordMismatch') &&
+          stepThreeForm.get('confirmPassword')?.touched){
+          <mat-error>Las contraseñas no coinciden</mat-error>
+          }
+        </form>
+        <button
+          mat-raised-button
+          class="step-three-button"
+          (click)="nextStep.emit()"
+          [disabled]="stepThreeForm.invalid"
+        >
+          Registrarme
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+<p class="info-text">
+    ETICOS SERRANO GÓMEZ LTDA le informa que los datos suministrados a través de
+    este sitio web serán tratados para efecto de gestionar la información que se
+    requiere por usted de nuestra organización, petición que conlleva el
+    consentimiento de forma inequívoca para el tratamiento de sus datos en el
+    sentido antes dicho. Le rogamos abstenerse de suministrar información de
+    carácter sensible si no es absolutamente necesario para resolver su inquietud.
+    Puede consultar la política de protección de datos de ETICOS en el siguiente
+    enlace web
+    <a href="#">www.droguerialaeconomia.com</a> y ejercer sus derechos a conocer,
+    actualizar, rectificar su información, o bien solicitar la cancelación del
+    proceso en el siguiente correo electrónico habeasdata&commat;eticos.com
+  </p>
+  

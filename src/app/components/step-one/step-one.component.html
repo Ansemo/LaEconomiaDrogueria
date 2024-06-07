@@ -1,0 +1,130 @@
+<div class="step-one-container">
+  <app-detail
+    [subtitle]="'Paso 1/3'"
+    [title]="'Crear cuenta'"
+    [detail1]="''"
+    [detail2]="''"
+  ></app-detail>
+
+  <mat-card class="step-one-card">
+    <mat-card-content class="step-one-card__content">
+      <div class="step-one-card__form-container">
+        <form [formGroup]="stepOneForm" class="step-one-form">
+          <label for="firstName" class="step-one-form__label">Nombre</label>
+          <input
+            matInput
+            id="firstName"
+            formControlName="firstName"
+            class="step-one-form__input"
+          />
+          @if(stepOneForm.get('firstName')?.touched &&
+          stepOneForm.get('firstName')?.hasError('required')){
+          <mat-error>El nombre es requerido</mat-error>
+          }
+
+          <label for="lastName" class="step-one-form__label">Apellidos</label>
+          <input
+            matInput
+            id="lastName"
+            formControlName="lastName"
+            class="step-one-form__input"
+          />
+          @if(stepOneForm.get('lastName')?.touched &&
+          stepOneForm.get('lastName')?.hasError('required')){
+          <mat-error>Los apellidos son requeridos</mat-error>
+          }
+
+          <label for="email" class="step-one-form__label"
+            >Correo electrónico</label
+          >
+          <input
+            matInput
+            id="email"
+            formControlName="email"
+            class="step-one-form__input"
+          />
+          @if(stepOneForm.get('email')?.touched &&
+          stepOneForm.get('email')?.hasError('required')){
+          <mat-error>El correo electrónico es requerido</mat-error>
+          } @if(stepOneForm.get('email')?.touched &&
+          stepOneForm.get('email')?.hasError('email')){
+          <mat-error>Debe ser un correo electrónico válido</mat-error>
+          }
+
+          <label for="phone" class="step-one-form__label">Celular</label>
+          <input
+            matInput
+            id="phone"
+            formControlName="phone"
+            class="step-one-form__input"
+          />
+          @if(stepOneForm.get('phone')?.touched &&
+          stepOneForm.get('phone')?.hasError('required')){
+          <mat-error>El celular es requerido</mat-error>
+          }
+
+          <mat-checkbox formControlName="acceptTerms">
+            Acepto las <a href="#">políticas y términos de uso</a>.
+          </mat-checkbox>
+          @if(stepOneForm.get('acceptTerms')?.touched &&
+          stepOneForm.get('acceptTerms')?.hasError('required')){
+          <mat-error>Aceptar los términos es requerido</mat-error>
+          }
+
+          <mat-checkbox formControlName="joinClub">
+            Acepto ser parte del Club Vida Sana
+            <a href="#">conocer más acerca del Club Vida Sana</a>.
+          </mat-checkbox>
+
+          @if(stepOneForm.get('joinClub')?.value){
+          <div class="additional-options">
+            <h3>¿Por cuál medio te gustaría que te contactáramos?</h3>
+            <div class="contact-options">
+              <div class="column">
+                <mat-checkbox formControlName="contactAll"
+                  >Todas las anteriores</mat-checkbox
+                >
+                <mat-checkbox formControlName="contactWhatsapp"
+                  >WhatsApp</mat-checkbox
+                >
+              </div>
+              <div class="column">
+                <mat-checkbox formControlName="contactEmail"
+                  >Correo Electrónico</mat-checkbox
+                >
+                <mat-checkbox formControlName="contactText"
+                  >Mensaje de texto</mat-checkbox
+                >
+                <mat-checkbox formControlName="contactCall"
+                  >Llamadas telefónicas</mat-checkbox
+                >
+              </div>
+            </div>
+          </div>
+          }
+        </form>
+        <button
+          mat-raised-button
+          class="step-one-form__submit-button"
+          (click)="nextStep.emit()"
+          [disabled]="stepOneForm.invalid"
+        >
+          Siguiente 
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+<p class="info-text">
+  ETICOS SERRANO GÓMEZ LTDA le informa que los datos suministrados a través de
+  este sitio web serán tratados para efecto de gestionar la información que se
+  requiere por usted de nuestra organización, petición que conlleva el
+  consentimiento de forma inequívoca para el tratamiento de sus datos en el
+  sentido antes dicho. Le rogamos abstenerse de suministrar información de
+  carácter sensible si no es absolutamente necesario para resolver su inquietud.
+  Puede consultar la política de protección de datos de ETICOS en el siguiente
+  enlace web
+  <a href="#">www.droguerialaeconomia.com</a> y ejercer sus derechos a conocer,
+  actualizar, rectificar su información, o bien solicitar la cancelación del
+  proceso en el siguiente correo electrónico habeasdata&commat;eticos.com
+</p>

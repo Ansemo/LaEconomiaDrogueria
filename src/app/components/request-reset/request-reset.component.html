@@ -1,0 +1,52 @@
+<div class="reset-container">
+  @if(!loading){
+
+  <app-detail
+    title="Recuperar contraseña"
+    detail1="Enviaremos a su correo electrónico registrado un código que le permitirá establecer una nueva contraseña"
+  ></app-detail>
+
+  <mat-card class="reset-card">
+    <mat-card-content class="reset-card__content">
+      <div class="reset-card__form-container">
+        <form
+          [formGroup]="requestForm"
+          class="reset-form"
+          (ngSubmit)="onSubmit()"
+        >
+          <label for="email" class="reset-form__label"
+            >Correo electrónico</label
+          >
+          <input
+            matInput
+            type="email"
+            id="email"
+            name="email"
+            class="reset-form__input"
+            formControlName="email"
+            #emailInput
+          />
+          @if(requestForm.get('email')?.touched &&
+          requestForm.get('email')?.hasError('required')){
+          <mat-error> El correo electrónico es requerido </mat-error>
+          } @if( requestForm.get('email')?.touched &&
+          requestForm.get('email')?.hasError('email')) {
+          <mat-error> Debe ser un correo electrónico válido </mat-error>}
+
+          <button
+            mat-raised-button
+            type="submit"
+            class="reset-form__submit-button"
+            [disabled]="requestForm.invalid || loading"
+          >
+            Enviar código
+          </button>
+        </form>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  } @else{
+  <mat-spinner></mat-spinner>
+  <span>Enviando código...</span>
+  }
+</div>
